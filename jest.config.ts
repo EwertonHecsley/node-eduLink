@@ -8,11 +8,16 @@ const config: Config = {
   },
   rootDir: '.',
   testMatch: ['<rootDir>/tests/**/*.spec.ts'],
+
+  collectCoverage: true,
   coverageDirectory: 'coverage',
+  coverageReporters: ['text', 'lcov'],
+
   collectCoverageFrom: [
     'src/core/domain/**/*.ts',
-    '!src/core/domain/**/entity/*.ts', // optional depending on needs
+    '!src/core/domain/**/entity/*.ts',
   ],
+
   coverageThreshold: {
     global: {
       branches: 70,
@@ -27,10 +32,14 @@ const config: Config = {
       statements: 100,
     },
   },
+
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: 'tsconfig.json'
-    }],
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        tsconfig: 'tsconfig.json',
+      },
+    ],
   },
 };
 
