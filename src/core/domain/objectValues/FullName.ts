@@ -4,8 +4,8 @@ import { InvalidFullNameException } from "@/utils/errors/customs/InvalidNameExce
 
 export class FullName{
     private readonly value:string;
-    private static MAX_LENGTH = 255;
-    private static MIN_LENGTH = 3;
+    private static readonly MAX_LENGTH = 255;
+    private static readonly MIN_LENGTH = 3;
 
     private constructor(fullName:string){
         this.value = fullName;

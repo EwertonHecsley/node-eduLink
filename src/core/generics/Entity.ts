@@ -1,7 +1,7 @@
 import Identity from "./Identity";
 
 export default class Entity<T>{
-    private entityId:Identity;
+    private readonly entityId:Identity;
     protected props:T;
 
     protected constructor(props:T,id?:Identity){
