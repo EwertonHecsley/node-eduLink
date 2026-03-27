@@ -1,12 +1,12 @@
-const tseslint = require('typescript-eslint');
+import { configs } from 'typescript-eslint';
 
-module.exports = [
-  ...tseslint.configs.recommended,
+export default [
+  ...configs.recommended,
   {
     files: ['**/*.ts'],
     languageOptions: {
       parserOptions: {
-        project: true,
+        project: './tsconfig.eslint.json',
         tsconfigRootDir: __dirname
       }
     },

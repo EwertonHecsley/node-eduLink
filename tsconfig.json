@@ -23,7 +23,7 @@
     "resolveJsonModule": true,
 
     "skipLibCheck": true,
-    "types": ["node"],
+    "types": ["node", "jest"],
     "sourceMap": true
   },
   "include": ["src"]
