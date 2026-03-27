@@ -15,7 +15,7 @@ export class CNPJ{
         }
 
         const raw = String(input);
-        const numeric = raw.replace(/\D/g, '');
+        const numeric = raw.replaceAll(/\D/g, '');
 
         if(!this.isValid(numeric)){
             return left(new InvalidCnpjException());

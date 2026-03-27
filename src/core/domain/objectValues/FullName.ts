@@ -29,7 +29,7 @@ export class FullName{
     private static normalize(value: string): string {
     return value
       .trim()
-      .replace(/\s+/g, ' ');
+      .replaceAll(/\s+/g, ' ');
     }
 
     get fullName():string{
