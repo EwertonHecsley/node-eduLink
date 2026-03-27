@@ -3,19 +3,27 @@ import type { Config } from 'jest';
 const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
+  rootDir: '.',
+
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  rootDir: '.',
+
   testMatch: ['<rootDir>/tests/**/*.spec.ts'],
 
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['text', 'lcov'],
+  coverageReporters: ['text', 'lcov', 'html'],
 
   collectCoverageFrom: [
-    'src/core/domain/**/*.ts',
-    '!src/core/domain/**/entity/*.ts',
+    'src/core/**/*.ts',
+    'src/infra/**/*.ts',
+    'src/application/**/*.ts',
+
+    '!src/**/*.d.ts',
+    '!src/**/index.ts',
+    '!src/**/*.module.ts',
+    '!src/main.ts',
   ],
 
   coverageThreshold: {
