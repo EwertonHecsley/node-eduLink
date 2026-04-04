@@ -26,6 +26,7 @@ describe('User Entity', () => {
       password: 'hashedPassword123',
       role: 'DIRECTOR',
       createdAt: createdAt,
+      updatedAt: createdAt,
     };
 
     const user = User.create(userProps);
@@ -65,6 +66,7 @@ describe('User Entity', () => {
         password: 'hashedPassword123',
         role: 'ADM',
         createdAt: new Date(),
+        updatedAt: new Date(),
       };
       user = User.create(userProps);
     });

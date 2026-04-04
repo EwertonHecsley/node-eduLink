@@ -31,6 +31,7 @@ describe('UpdateUserUseCase', () => {
       password: 'oldpassword',
       role: 'ADM',
       createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     jest.spyOn(mockUser, 'changeName').mockImplementation();
@@ -85,6 +86,23 @@ describe('UpdateUserUseCase', () => {
     expect(mockUser.changePassword).toHaveBeenCalledWith('newHashedPassword');
     expect(mockUser.changeCnpj).not.toHaveBeenCalled();
 
+    expect(userGatewayMock.update).toHaveBeenCalledWith(mockUser);
+  });
+
+  it('should successfully update CNPJ without updating email', async () => {
+    userGatewayMock.findByCnpj.mockResolvedValueOnce(null);
+
+    const updateRequest = {
+      id: 'user-id',
+      cnpj: '98765432000198',
+    };
+
+    const result = await useCase.execute(updateRequest);
+
+    expect(result.isRight()).toBe(true);
+    expect(userGatewayMock.findByCnpj).toHaveBeenCalledWith('98765432000198');
+    expect(mockUser.changeCnpj).toHaveBeenCalledWith('98765432000198');
+    expect(mockUser.changeEmail).not.toHaveBeenCalled();
     expect(userGatewayMock.update).toHaveBeenCalledWith(mockUser);
   });
 

@@ -60,6 +60,7 @@ export class CreateUserFactory {
       password,
       role: 'ADM',
       createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     return right(user);

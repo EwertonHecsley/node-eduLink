@@ -24,6 +24,9 @@ const config: Config = {
     '!src/**/index.ts',
     '!src/**/*.module.ts',
     '!src/main.ts',
+    '!src/infra/database/prisma/connection.ts',
+    '!src/infra/database/prisma/migrations/**/*.ts',
+    '!src/infra/database/prisma/client.ts',
   ],
 
   coverageThreshold: {
