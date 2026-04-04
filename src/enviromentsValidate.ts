@@ -7,7 +7,11 @@ export default class EnviromentValidator {
   private readonly envSchema = z
     .object({
       NODE_ENV: z.enum(['development', 'production', 'test']),
-      PORT: z.string().regex(/^\d+$/).transform(Number),
+      PORT: z
+        .string({ error: 'PORT is required' })
+        .regex(/^\d+$/)
+        .transform(Number),
+      DATABASE_URL: z.string({ error: 'DATABASE_URL is required' }),
     })
     .passthrough();
 

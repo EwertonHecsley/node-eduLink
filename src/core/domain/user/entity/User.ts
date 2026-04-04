@@ -11,6 +11,7 @@ export type UserProps = {
   password: string;
   role: string;
   createdAt: Date;
+  updatedAt: Date;
 };
 
 export class User extends Entity<UserProps> {
@@ -51,6 +52,10 @@ export class User extends Entity<UserProps> {
 
   get createdAt(): Date {
     return this.props.createdAt;
+  }
+
+  get updatedAt(): Date {
+    return this.props.updatedAt;
   }
 
   changeName(newName: string): void {
