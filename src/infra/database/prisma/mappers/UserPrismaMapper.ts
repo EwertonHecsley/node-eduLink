@@ -3,7 +3,7 @@ import { Email } from '@/core/domain/objectValues/Email';
 import { FullName } from '@/core/domain/objectValues/FullName';
 import { User } from '@/core/domain/user/entity/User';
 import Identity from '@/core/generics/Identity';
-import { User as UserDatabase } from '@/generated/prisma/client';
+import { User as UserDatabase } from '../../../../generated/prisma/client';
 
 export class UserPrismaMapper {
   static toDatabase(entity: User): UserDatabase {
