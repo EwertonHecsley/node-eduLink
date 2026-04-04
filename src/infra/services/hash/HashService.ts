@@ -15,6 +15,7 @@ export class HashService implements HashGateway {
     try {
       return await argon2.verify(hash, password);
     } catch (error) {
+      console.error(error);
       return false;
     }
   }

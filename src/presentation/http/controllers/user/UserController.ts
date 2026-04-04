@@ -65,6 +65,7 @@ export class UserController {
         users: result.map((user) => this.mapUserResponse(user)),
       });
     } catch (error) {
+      console.error(error);
       reply.status(500).send({ message: 'Internal Error.' });
     }
   }
