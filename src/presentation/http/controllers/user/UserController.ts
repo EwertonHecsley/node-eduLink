@@ -56,7 +56,7 @@ export class UserController {
     });
   }
 
-  async list(_request: FastifyRequest, reply: FastifyReply) {
+  async list(request: FastifyRequest, reply: FastifyReply) {
     try {
       const result = await this.listUserService.execute();
 
@@ -65,7 +65,7 @@ export class UserController {
         users: result.map((user) => this.mapUserResponse(user)),
       });
     } catch (error) {
-      console.error(error);
+      request.log.error(error);
       reply.status(500).send({ message: 'Internal Error.' });
     }
   }

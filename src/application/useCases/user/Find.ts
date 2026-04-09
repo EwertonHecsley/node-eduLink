@@ -19,6 +19,8 @@ export class FindUserUseCase {
     if (!id || typeof id !== 'string')
       return left(new BadRequestException('ID Invalido.'));
 
+    if (id.length !== 36) return left(new BadRequestException('ID Invalido.'));
+
     const user = await this.userGateway.findById(id);
 
     if (!user) return left(new NotFoundException('Usuario nao encontrado.'));

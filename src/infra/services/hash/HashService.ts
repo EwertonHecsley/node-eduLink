@@ -12,11 +12,6 @@ export class HashService implements HashGateway {
   }
 
   async compare(password: string, hash: string): Promise<boolean> {
-    try {
-      return await argon2.verify(hash, password);
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+    return await argon2.verify(hash, password);
   }
 }
