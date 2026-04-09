@@ -35,7 +35,13 @@ describe('UserController', () => {
     mockRequest = {
       body: {},
       params: {},
-    };
+      log: {
+        error: jest.fn(),
+        info: jest.fn(),
+        warn: jest.fn(),
+        debug: jest.fn(),
+      },
+    } as any;
 
     mockReply = {
       status: jest.fn().mockReturnThis(),
@@ -116,7 +122,7 @@ describe('UserController', () => {
 
   describe('Find User', () => {
     it('should return 404 if user not found', async () => {
-      mockRequest.params = { id: 'non-existent' };
+      mockRequest.params = { id: '550e8400-e29b-41d4-a716-446655440000' };
       mockUserRepository.findById = jest.fn().mockResolvedValue(null);
       await userController.find(mockRequest as FastifyRequest, mockReply as FastifyReply);
       expect(mockReply.status).toHaveBeenCalledWith(404);
@@ -126,9 +132,9 @@ describe('UserController', () => {
     });
 
     it('should return 200 and the user if found', async () => {
-      mockRequest.params = { id: 'existing' };
+      mockRequest.params = { id: '550e8400-e29b-41d4-a716-446655440001' };
       const mockUser = {
-        id: { valueId: 'usr-1' },
+        id: { valueId: '550e8400-e29b-41d4-a716-446655440001' },
         fullName: { fullName: 'Bob' },
         cnpj: { getFormatted: () => '11' },
         email: { email: 'a@example.com' },
@@ -145,7 +151,7 @@ describe('UserController', () => {
 
   describe('Update User', () => {
     it('should return 404 if user to update does not exist', async () => {
-      mockRequest.params = { id: 'non-existent' };
+      mockRequest.params = { id: '550e8400-e29b-41d4-a716-446655440002' };
       mockRequest.body = { fullName: 'New Name' };
       mockUserRepository.findById = jest.fn().mockResolvedValue(null);
       await userController.update(mockRequest as FastifyRequest, mockReply as FastifyReply);
@@ -156,10 +162,10 @@ describe('UserController', () => {
     });
 
     it('should return 204 when updated successfully', async () => {
-      mockRequest.params = { id: 'existing' };
+      mockRequest.params = { id: '550e8400-e29b-41d4-a716-446655440003' };
       mockRequest.body = { fullName: 'New Name' };
       const mockUser = {
-        id: { valueId: 'usr-1' },
+        id: { valueId: '550e8400-e29b-41d4-a716-446655440003' },
         fullName: { fullName: 'Bob' },
         cnpj: { getFormatted: () => '11' },
         email: { email: 'a@example.com' },
@@ -177,7 +183,7 @@ describe('UserController', () => {
 
   describe('Delete User', () => {
     it('should return 404 if user to delete does not exist', async () => {
-      mockRequest.params = { id: 'non-existent' };
+      mockRequest.params = { id: '550e8400-e29b-41d4-a716-446655440004' };
       mockUserRepository.findById = jest.fn().mockResolvedValue(null);
       await userController.delete(mockRequest as FastifyRequest, mockReply as FastifyReply);
       expect(mockReply.status).toHaveBeenCalledWith(404);
@@ -187,8 +193,8 @@ describe('UserController', () => {
     });
 
     it('should return 204 when deleted successfully', async () => {
-      mockRequest.params = { id: 'existing' };
-      const mockUser = { id: { valueId: 'usr-1' } };
+      mockRequest.params = { id: '550e8400-e29b-41d4-a716-446655440005' };
+      const mockUser = { id: { valueId: '550e8400-e29b-41d4-a716-446655440005' } };
       mockUserRepository.findById = jest.fn().mockResolvedValue(mockUser);
       mockUserRepository.delete = jest.fn().mockResolvedValue(undefined);
       await userController.delete(mockRequest as FastifyRequest, mockReply as FastifyReply);

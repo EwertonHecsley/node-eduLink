@@ -38,9 +38,10 @@ describe('HashService', () => {
       expect(res).toBe(false);
     });
 
-    it('should handle argon2 exceptions gracefully and return false', async () => {
-      const res = await service.compare('password', 'bad_hash');
-      expect(res).toBe(false);
+    it('should throw if argon2 fails', async () => {
+      await expect(service.compare('password', 'bad_hash')).rejects.toThrow(
+        'Verification failed inside argon2',
+      );
     });
   });
 });
